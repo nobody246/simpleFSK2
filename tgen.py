@@ -24,11 +24,6 @@ def playFreq():
    samples = (np.sin(2*np.pi*np.arange(fs*duration)*f/fs)).astype(np.float32)
    stream.write(volume * samples)
 
-def playSpace():
-   global spDuration
-   samples = (0 * np.arange(fs*spDuration)).astype(np.float32)
-   stream.write(samples)
-
    
 stream = p.open(format=pyaudio.paFloat32,
                 channels=1,
@@ -46,12 +41,8 @@ def prepareStr(st):
    return r      
 while True:
     for m in prepareStr(message):
-        if m == " ":
-            playSpace()
-            continue
         f = freqs[int(m)]
         playFreq()
 stream.stop_stream()
 stream.close()
-
 p.terminate()

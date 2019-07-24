@@ -27,18 +27,14 @@ two = 2400.0
 three = 2600.0
 four = 2800.0
 five = 3000.0
-#six = 3200.0
 DETECT = [lo, two, three, four,five]
-#DETECT = [lo,two,three,four]
-#Listen for freq
 scores = [0,0,0,0,0,0]
 scoreIndex = 0
 curChr = ""
-lastIndex = None
-print "listening for code.."
 lastChr=""
 msg = ""
-
+lastIndex = None
+print "listening for code.."
 def processMsg(m):
    c = ""
    for x in m.split("0"):
