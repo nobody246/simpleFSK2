@@ -51,8 +51,6 @@ while True:
             continue
         f = freqs[int(m)]
         playFreq()
-    playSpace()
-    playSpace()
 stream.stop_stream()
 stream.close()
 
