@@ -25,7 +25,7 @@ three = 2600.0
 four = 2800.0
 five = 3000.0
 DETECT = [lo, two, three, four,five]
-scores = [0,0,0,0,0,0]
+scores = [0,0,0,0,0]
 scoreIndex = 0
 curChr = ""
 lastChr=""
@@ -68,7 +68,7 @@ while True:
               scores[scoreIndex] += 1
               if lastIndex != scoreIndex and maxScore >= 2:
                  curChr+=str(maxScoreIndex)
-                 scores = [0,0,0,0,0,0]
+                 scores = [0,0,0,0,0]
                  spCnt = 0
               elif lastIndex == scoreIndex and scoreIndex==0:
                  spCnt+=1
