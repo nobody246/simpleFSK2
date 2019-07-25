@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import pyaudio
 from numpy import zeros,linspace,short,fromstring,hstack,transpose
 from scipy import fft
@@ -9,10 +8,8 @@ from cypher import cypherToReadable
 #             0.1: Probably Ideal
 #             1: Poorly sensitive
 SENSITIVITY= 0.1
-
 #Bandwidth for detection 
-BANDWIDTH = 50
-
+BANDWIDTH = 100
 #Set up audio sampler
 SAMPLES = 1024
 RATE = 88200
@@ -50,8 +47,7 @@ def processMsg(m):
       else:
          c+="X "
    print c
-
-
+spCnt = 0
 sigFound = False
 while True:
    while stream.get_read_available()< SAMPLES: sleep(0.005)
@@ -71,8 +67,11 @@ while True:
               scoreIndex = DETECT.index(tone)
               scores[scoreIndex] += 1
               if lastIndex != scoreIndex and maxScore >= 2:
-                  curChr+=str(maxScoreIndex)
-                  scores = [0,0,0,0,0,0]
+                 curChr+=str(maxScoreIndex)
+                 scores = [0,0,0,0,0,0]
+                 spCnt = 0
+              elif lastIndex == scoreIndex and scoreIndex==0:
+                 spCnt+=1
               lastIndex = scoreIndex
               if not sigFound:
                  print "signal detected, please wait.."
@@ -84,7 +83,7 @@ while True:
                     lastChr = ""
               lastChr = curChr           
               curChr=""
-          if len(msg)>=50:
+          if spCnt>=100 and len(msg)>=10:
               processMsg(msg)
               msg=""
               curChr=""
@@ -92,7 +91,6 @@ while True:
       except Exception as e:
           print "error.." + str(e)
           pass
-
 stream.stop_stream()
 stream.close()
 
