@@ -83,7 +83,8 @@ while True:
                     lastChr = ""
               lastChr = curChr           
               curChr=""
-          if spCnt>=100 and len(msg)>=10:
+          if spCnt>=100 and len(msg)>=10\
+             or len(msg)>=100:
               processMsg(msg)
               msg=""
               curChr=""
