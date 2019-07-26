@@ -32,7 +32,6 @@ lastChr=""
 msg = ""
 lastIndex = None
 showErrors = False
-print "listening for code.."
 def processMsg(m):
    global showErrors
    c = ""
@@ -51,6 +50,7 @@ def processMsg(m):
    print c
 spCnt = 0
 sigFound = False
+print "listening for code.."
 while True:
    while stream.get_read_available()< SAMPLES: sleep(0.005)
    audioData  = fromstring(stream.read(
@@ -96,7 +96,6 @@ while True:
           pass
 stream.stop_stream()
 stream.close()
-
 p.terminate()              
               
 
