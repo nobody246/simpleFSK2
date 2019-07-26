@@ -6,8 +6,7 @@ from cypher import readableToCypher
 #todo add as params
 volume = 1
 fs = 88200
-duration = .5
-spDuration = .1
+duration = .25
 f = 0
 lo = 2200.0
 two = 2400.0
