@@ -1,6 +1,6 @@
 # simpleFSK2
 
-Polytone (4 tone) data modulation.
+Polytone (5 tone) data modulation.
 
 bit timing can be modified at the transmitting end (tgen.py), and can be received without changing the code 
 on the receiving end (t.py) at all, because polytone modulation doesn't require a check on how long
