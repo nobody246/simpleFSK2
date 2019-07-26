@@ -15,7 +15,7 @@ three = 2600.0
 four = 2800.0
 five = 3000.0
 freqs = [lo, two, three, four,five]
-message="           123456789ABCDEF              "
+message="           THE_GRASS_IS_ALWAYS_GREENER_ON_THE_OTHER_SIDE_YANKEE_ALPHA_FOXTROT "
 
 p = pyaudio.PyAudio()
 

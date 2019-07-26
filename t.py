@@ -31,8 +31,10 @@ curChr = ""
 lastChr=""
 msg = ""
 lastIndex = None
+showErrors = False
 print "listening for code.."
 def processMsg(m):
+   global showErrors
    c = ""
    for x in m.split("0"):
       n = ""
@@ -43,9 +45,9 @@ def processMsg(m):
          n+=y
          l = y
       if n in cypherToReadable.keys():
-         c+=cypherToReadable[n] + " "
-      else:
-         c+="X "
+         c+=cypherToReadable[n]
+      elif showErrors:
+         c+="[X] "
    print c
 spCnt = 0
 sigFound = False
@@ -84,7 +86,7 @@ while True:
               lastChr = curChr           
               curChr=""
           if spCnt>=100 and len(msg)>=10\
-             or len(msg)>=100:
+             or len(msg)>=500:
               processMsg(msg)
               msg=""
               curChr=""
