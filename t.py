@@ -4,13 +4,9 @@ from numpy import zeros,linspace,short,fromstring,hstack,transpose
 from scipy import fft
 from time import sleep, time
 from cypher import cypherToReadable
-#Sensitivity, 0.05: Extremely Sensitive, may give false alarms
-#             0.1: Probably Ideal
-#             1: Poorly sensitive
+import signal
 SENSITIVITY= 0.1
-#Bandwidth for detection 
 BANDWIDTH = 100
-#Set up audio sampler
 SAMPLES = 1024
 RATE = 88200
 pa = pyaudio.PyAudio()
@@ -19,6 +15,13 @@ stream = pa.open(format=pyaudio.paInt16,
                  rate=RATE,
                  input=True,
                  frames_per_buffer=SAMPLES)
+def sigHandler(s, fr):
+   global pa, stream
+   stream.stop_stream()
+   stream.close()
+   pa.terminate()     
+   exit(0)
+signal.signal(signal.SIGINT, sigHandler)
 lo = 2200.0
 two = 2400.0
 three = 2600.0
@@ -93,10 +96,7 @@ while True:
               lastChr=""
       except Exception as e:
           print "error.." + str(e)
-          pass
-stream.stop_stream()
-stream.close()
-p.terminate()              
+          pass     
               
 
       
