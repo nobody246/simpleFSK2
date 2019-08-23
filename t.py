@@ -33,6 +33,7 @@ scoreIndex = 0
 curChr = ""
 lastChr=""
 msg = ""
+lastMsgLen = 0
 lastIndex = None
 showErrors = False
 def processMsg(m):
@@ -51,7 +52,6 @@ def processMsg(m):
       elif showErrors:
          c+="[X] "
    print c
-spCnt = 0
 sigFound = False
 print "listening for code.."
 while True:
@@ -74,9 +74,6 @@ while True:
               if lastIndex != scoreIndex and maxScore >= 2:
                  curChr+=str(maxScoreIndex)
                  scores = [0,0,0,0,0]
-                 spCnt = 0
-              elif lastIndex == scoreIndex and scoreIndex==0:
-                 spCnt+=1
               lastIndex = scoreIndex
               if not sigFound:
                  print "signal detected, please wait.."
@@ -88,16 +85,12 @@ while True:
                     lastChr = ""
               lastChr = curChr           
               curChr=""
-          if spCnt>=100 and len(msg)>=10\
-             or len(msg)>=500:
-              processMsg(msg)
-              msg=""
-              curChr=""
-              lastChr=""
       except Exception as e:
           print "error.." + str(e)
-          pass     
-              
-
-      
-                  
+          pass
+      curMsgLen = len(msg)
+      if lastMsgLen < curMsgLen:
+         processMsg(msg)
+         lastMsgLen = curMsgLen
+         curChr=""
+         lastChr=""
