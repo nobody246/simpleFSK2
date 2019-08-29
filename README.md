@@ -7,4 +7,4 @@ on the receiving end (t.py) at all. Polytone modulation doesn't require a check 
 a particular frequency exists in the time domain, only that it exists for a detectable amount of time which
 appears to make it a robust option for *digital/soundcard demodulation* in a noisey environment as opposed to RTTY or CW type FSK modulation relative to it's bps. 
 
-This is an incomplete experiment/WIP just for my own learning purposes.
+This is an incomplete experiment/WIP just for my own educational purposes.
